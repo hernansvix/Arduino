@@ -1,0 +1,37 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12,11,5,4,3,2);
+String clave;
+
+
+void setup() {
+  lcd.begin(16,2);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+  
+  if(Serial.available()>0)
+  {
+    clave=Serial.readString();
+    Serial.println(clave);
+    if(clave=="0855")
+    {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("CLAVE VALIDA");
+      Serial.println("CLAVE CORRECTA");
+      
+    
+    }
+    else
+    {
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("CLAVE INVALIDA");
+      Serial.println("INTENTE DE NUEVO");
+      
+    }
+  }
+
+}
